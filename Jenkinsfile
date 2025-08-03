@@ -1,8 +1,10 @@
 pipeline {
     agent any
     environment {
+        AWS_ACCESS_KEY_ID = credentials('aws-access-key-id') 
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key') 
         AWS_DEFAULT_REGION = 'us-east-1'
-	S3_BUCKET = 's3-deploy-lsbr'
+	    S3_BUCKET = 's3-deploy-lsbr'
     }
     stages {
         stage('Checkout Code') {
