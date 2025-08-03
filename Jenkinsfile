@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Upload to S3') {
             steps {
-                sh 'aws s3 cp . s3://s3-deploy-lsbr --recursive --exclude ".git/*"'
+                sh '/usr/local/bin/aws s3 cp . s3://s3-deploy-lsbr --recursive --exclude ".git/*"'
             }
         }
     }
