@@ -11,7 +11,7 @@ pipeline {
             }
         }
         
-    stage('install AWS CLI (option)'){
+   /* stage('install AWS CLI (option)'){
         steps {
                sh '''
                    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -20,7 +20,7 @@ pipeline {
                     sudo ./aws/install
                '''
           }
-      }
+      }*/
     stage('Upload to S3') {
         steps {
                 withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'my_aws_credential']]){
