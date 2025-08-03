@@ -13,12 +13,14 @@ pipeline {
         
     stage('install AWS CLI (option)'){
         steps {
-               bat '''
+               sh '
 	       aws --version || (
-                   curl -o awscliv2.zip https://awscli.amazonaws.com/AWSCLIV2.msi
-                   msiexec.exe /i awscliv2.zip /quiet
+                   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                    unzip awscliv2.zip
+                    sudo apt install unzip
+                    sudo ./aws/install
                )
-               '''
+               '
           }
       }
     stage('Upload to S3') {
