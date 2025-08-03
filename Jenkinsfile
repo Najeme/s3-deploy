@@ -24,9 +24,11 @@ pipeline {
     stage('Upload to S3') {
         steps {
                 withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'my_aws_credential']]){
-                sh 'aws s3 cp . s3://s3-deploy-lsbr --recursive --exclude ".git/*"
+                sh '''
+                aws s3 cp . s3://s3-deploy-lsbr --recursive --exclude ".git/*"
 		        aws configure set aws_access_key_ID %AWS_ACCESS_KEY_ID%
-		        aws configure set aws_secret_access_key %AWS_SECRET_ACCESS_KEY%'
+		        aws configure set aws_secret_access_key %AWS_SECRET_ACCESS_KEY%
+                '''
 		}
             }
         }
