@@ -1,20 +1,18 @@
 pipeline {
     agent any
+    environment {
+        AWS_DEFAULT_REGION = 'us-east-1'
+	S3_BUCKET = "s3-deploy-lsbr"
+    }
     stages {
-        stage('Build') {
+        stage('Checkout Code') {
             steps {
-                echo 'Building The Code Example'
+                git branch: 'main', url: 'https://github.com/Najeme/s3-deploy.git'
             }
         }
-        stage('Test') {
+        stage('Upload to S3') {
             steps {
-                echo 'Testing The Application Example'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying The Application Example To S3 bucket'
-                sh 'aws s3 cp https://github.com/Najeme/s3-deploy.git s3://s3-deploy-lsbr --recursive'
+                sh 'aws s3 cp . s3://s3-deploy-lsbr --recursive --exclude ".git/*"'
             }
         }
     }
