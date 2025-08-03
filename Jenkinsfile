@@ -4,7 +4,7 @@ pipeline {
         AWS_DEFAULT_REGION = 'us-east-1'
 	S3_BUCKET = "s3-deploy-lsbr"
     }
-    stage {
+    stages {
         stage('Checkout Code') {
             steps {
                 git branch: 'main', url: 'https://github.com/Najeme/s3-deploy.git'
