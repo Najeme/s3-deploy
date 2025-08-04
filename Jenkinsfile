@@ -23,7 +23,7 @@ pipeline {
       }*/
     stage('Upload to S3') {
         steps {
-                withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'my_aws_credential']]){
+                withCredentials([[ $class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'acaa5d6b-c90b-460a-9f2e-a5a878436b70']]){
                 sh '''
 		        aws configure set aws_access_key_ID %AWS_ACCESS_KEY_ID%
 		        aws configure set aws_secret_access_key %AWS_SECRET_ACCESS_KEY%
